@@ -113,8 +113,14 @@ h4{font-size:1.02rem;letter-spacing:-.015em}
    ================================================================= */
 .header{position:fixed;inset:0 0 auto;z-index:200;padding:20px 0;
   transition:padding .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease)}
-.header.scrolled{padding:12px 0;background:rgba(255,255,255,.86);
-  backdrop-filter:blur(16px) saturate(1.4);box-shadow:0 1px 0 var(--line)}
+.header.scrolled{padding:12px 0;box-shadow:0 1px 0 var(--line)}
+/* FIX: the blur lives on a pseudo-element — backdrop-filter on .header itself
+   makes it the containing block for the fixed mobile menu, which then cannot
+   span the full device height. */
+.header::before{content:'';position:absolute;inset:0;z-index:-1;opacity:0;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(16px) saturate(1.4);
+  transition:opacity .4s var(--ease);pointer-events:none}
+.header.scrolled::before{opacity:1}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .logo{display:flex;align-items:center;gap:.6rem;font-family:var(--ff-d);
   font-size:1.3rem;font-weight:600;letter-spacing:-.045em;color:var(--ink)}
@@ -160,7 +166,9 @@ h4{font-size:1.02rem;letter-spacing:-.015em}
 .burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-.burger.open span{background:var(--ink)}
+.header .burger.open span,
+.header:not(.scrolled).over-hero .burger.open span{background:var(--ink)}
+.header:not(.scrolled).over-hero .burger.open{border-color:var(--line)}
 @media(max-width:640px){
   .burger{width:52px;height:52px}
   .burger span{width:24px;margin:4.5px auto}
@@ -544,9 +552,10 @@ html.js .rise.in>*:nth-child(6){transition-delay:.34s}
   .svc-desc{grid-column:2/-1;grid-row:2}
   .svc-arrow{grid-row:1;grid-column:3}
 }
-@media(max-width:880px){
+@media(max-width:1024px){
   .burger{display:grid}
-  .menu{position:fixed;inset:0 0 0 auto;width:min(340px,84vw);background:#fff;
+  .menu{position:fixed;inset:0 0 0 auto;height:100vh;height:100dvh;
+    width:min(340px,84vw);background:#fff;
     flex-direction:column;align-items:stretch;gap:0;padding:92px 24px 32px;
     box-shadow:-24px 0 60px -24px rgba(0,23,91,.35);transform:translateX(101%);
     transition:transform .5s var(--ease);z-index:190;overflow-y:auto}
