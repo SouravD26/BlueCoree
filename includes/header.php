@@ -25,6 +25,11 @@ $over_hero  = $hero ? ' over-hero' : '';
 <meta property="og:title" content="<?= e($page_title) ?>">
 <meta property="og:description" content="<?= e($page_desc) ?>">
 <meta property="og:type" content="website">
+<link rel="icon" href="<?= asset('assets/favicon.ico') ?>" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="<?= asset('assets/favicon-32x32.png') ?>">
+<link rel="icon" type="image/png" sizes="16x16" href="<?= asset('assets/favicon-16x16.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset('assets/apple-touch-icon.png') ?>">
+<link rel="manifest" href="<?= asset('site.webmanifest') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
