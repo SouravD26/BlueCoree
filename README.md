@@ -1,16 +1,32 @@
-# React + Vite
+# BlueCoree
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Website for **Bluecoree** — IT infrastructure, cloud and web/app development, Kolkata.
+Live at [bluecoree.com](https://bluecoree.com).
 
-Currently, two official plugins are available:
+Built with React, Vite, Framer Motion and React Router. Enquiries are delivered by EmailJS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Develop
 
-## React Compiler
+```bash
+npm install
+npm run dev      # http://localhost:5280
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Build & deploy
 
-## Expanding the Oxlint configuration
+```bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Upload everything inside `dist/` (including the hidden `.htaccess`) to the web root.
+The `.htaccess` handles HTTPS, SPA routing and 301 redirects from the old PHP URLs.
+
+## Editing content
+
+| What | Where |
+| --- | --- |
+| Services, stats, FAQs, testimonials, contact details | `src/data.js` |
+| Service photos (900×600, named by slug) | `public/services/` |
+| Colours & layout | `src/index.css` (tokens at the top) |
+| Pages | `src/pages/` |
+| Hero network animation | `src/components/HeroNetwork.jsx` |
